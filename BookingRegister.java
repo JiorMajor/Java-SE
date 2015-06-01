@@ -1,6 +1,7 @@
 package workshop;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -35,13 +36,25 @@ public class BookingRegister {
 	public ArrayList<Booking> getBooking(Facility f){
 		ArrayList<Booking> bookinglist = new ArrayList<Booking>(bookRegisterhm.get(f));
 		System.out.println(bookinglist.toString());
-		return bookinglist;
+		return bookinglist;	
+	}
+	
+	public Collection<ArrayList<Booking>> getBookings(){
+		Collection<ArrayList<Booking>> bookingList;
+		bookingList = bookRegisterhm.values();
+		System.out.println(bookingList);
+		return bookingList;
 		
+	}
+	
+	public void removeBooking(Booking b) {
+		bookRegisterhm.remove(b.getFacility());
 	}
 
 	@Override
 	public String toString() {
-		return "BookingRegister [bookRegisterhm=" + bookRegisterhm + "]";
+		String s = bookRegisterhm.toString();
+		return s;
 	}
 
 	

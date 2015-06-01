@@ -11,6 +11,7 @@ public class ClubApplication {
 		System.out.println("Person");
 		Person p1 = new Person("Phoo", "Pwint", "Wai");
 		Person p2 = new Person("Chan", "Pyae", "Aung");
+		Person p3 = new Person("John", "Major",null);
 		System.out.println(p1.show());
 		System.out.println(p2);
 		System.out.println("------------------------------------------");
@@ -78,8 +79,16 @@ public class ClubApplication {
 			bRegister.addBooking(f1, c1.addMember(p1), df.parse("1-Jun-2015"), df.parse("10-Jun-2015"));
 			bRegister.addBooking(f2, c1.addMember(p2), df.parse("1-Jun-2015"), df.parse("10-Jun-2015"));
 			bRegister.toString();
+			System.out.println("Get Bookings.");
 			bRegister.getBooking(f1);
 			bRegister.getBooking(f2);
+			Booking book = new Booking(c1.addMember(p3),f1, df.parse("1-Jun-2015"), df.parse("10-Jun-2015"));
+			bRegister.addBooking(f2,c1.addMember(p3), df.parse("10-Jun-2015"), df.parse("20-Jun-2015"));
+			System.out.println("All Booking");
+			bRegister.getBookings();
+			System.out.println("Remove Booking.");
+			bRegister.removeBooking(book);
+			bRegister.getBookings();
 		}
 		catch (BadBookingException b) {
 			System.out.println(b.getMessage());
