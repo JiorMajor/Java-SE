@@ -54,10 +54,10 @@ public class ClubApplication {
 		System.out.println("Show all facilities.");
 		c1.showFacilities();
 		System.out.println("Booking");
-		SimpleDateFormat df = new SimpleDateFormat("d-MMM-yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("d-MMM-yyyy H:mm");
 		try {
-			Booking b = new Booking(m1, c1.getFacility("House Lannister"), df.parse("1-Jun-2015"),df.parse("10-Jun-2015"));
-			Booking b1 = new Booking(m2, c1.getFacility("House Lannister"), df.parse("1-Jun-2015"),df.parse("10-Jun-2015"));
+			Booking b = new Booking(m1, c1.getFacility("House Lannister"), df.parse("1-Jun-2015 9:00"),df.parse("10-Jun-2015 5:00"));
+			Booking b1 = new Booking(m2, c1.getFacility("House Lannister"), df.parse("1-Jun-2015 9:00"),df.parse("10-Jun-2015 5:00"));
 			//Booking b2 = new Booking(m1, c1.getFacility("House Lannister"), df.parse("16-Jun-2015"),df.parse("10-Jun-2015"));
 			if(b1.overlaps(b)) {
 				throw new BadBookingException("This Facility is already booked.");
@@ -76,19 +76,21 @@ public class ClubApplication {
 		System.out.println("Booking Register");
 		BookingRegister bRegister = new BookingRegister();
 		try {
-			bRegister.addBooking(f1, c1.addMember(p1), df.parse("1-Jun-2015"), df.parse("10-Jun-2015"));
-			bRegister.addBooking(f2, c1.addMember(p2), df.parse("1-Jun-2015"), df.parse("10-Jun-2015"));
+			bRegister.addBooking(f1, c1.addMember(p1), df.parse("1-Jun-2015 9:00"), df.parse("10-Jun-2015 5:00"));
+			bRegister.addBooking(f2, c1.addMember(p2), df.parse("1-Jun-2015 9:00"), df.parse("10-Jun-2015 5:00"));
 			bRegister.toString();
 			System.out.println("Get Bookings.");
 			bRegister.getBooking(f1);
 			bRegister.getBooking(f2);
-			Booking book = new Booking(c1.addMember(p3),f1, df.parse("1-Jun-2015"), df.parse("10-Jun-2015"));
-			bRegister.addBooking(f2,c1.addMember(p3), df.parse("10-Jun-2015"), df.parse("20-Jun-2015"));
+			Booking book = new Booking(c1.addMember(p3),f1, df.parse("1-Jun-2015 9:00"), df.parse("10-Jun-2015 5:00"));
+			bRegister.addBooking(f2,c1.addMember(p3), df.parse("10-Jun-2015 9:00"), df.parse("20-Jun-2015 5:00"));
 			System.out.println("All Booking");
 			bRegister.getBookings();
 			System.out.println("Remove Booking.");
 			bRegister.removeBooking(book);
 			bRegister.getBookings();
+			
+			System.out.println(book.toString());
 		}
 		catch (BadBookingException b) {
 			System.out.println(b.getMessage());
