@@ -2,6 +2,7 @@ package workshop;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ClubApplication {
 
@@ -70,6 +71,23 @@ public class ClubApplication {
 		catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		
+		System.out.println("Booking Register");
+		BookingRegister bRegister = new BookingRegister();
+		try {
+			bRegister.addBooking(f1, c1.addMember(p1), df.parse("1-Jun-2015"), df.parse("10-Jun-2015"));
+			bRegister.addBooking(f2, c1.addMember(p2), df.parse("1-Jun-2015"), df.parse("10-Jun-2015"));
+			bRegister.toString();
+			bRegister.getBooking(f1);
+			bRegister.getBooking(f2);
+		}
+		catch (BadBookingException b) {
+			System.out.println(b.getMessage());
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 
 	}
 
